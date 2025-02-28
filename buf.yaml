@@ -1,0 +1,7 @@
+version: v2
+
+modules:
+  - path: .
+    name: buf.build/fox/foxapis
+deps:
+  - 'buf.build/googleapis/googleapis'
