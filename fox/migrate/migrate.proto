@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fox.migrate;
 import "google/protobuf/descriptor.proto";
-option go_package = "github.com/fox-apis/fox/api/gen/go/migrate;migrate";
+option go_package = "github.com/go-fox/fox/api/gen/go/migrate;migrate";
 
 // 扩展route.sql
 extend google.protobuf.MethodOptions {
