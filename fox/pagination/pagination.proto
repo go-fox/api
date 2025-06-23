@@ -3,13 +3,40 @@ syntax = "proto3";
 package fox.pagination;
 
 option go_package = "github.com/go-fox/fox/api/gen/go/pagination;pagination";
+import "google/protobuf/struct.proto";
 
 // PagingRequest 分页请求
 message PagingRequest{
   optional uint32 page = 1; // 当前页码
   optional uint32 size = 2; // 每页数量
-  optional string query = 3; // 查询条件，解析为https://github.com/go-fox/go-utils/blob/main/pagination/condition.go的Where结构体
+  optional Condition query = 3; // 查询条件
   optional string order_by=4; // 排序字段
   optional bool no_paging = 5; // 是否不分页，如果为true则page和size无效
   optional string fields = 6; // 要查询的字段，如果为空则查询全部字段
+}
+
+message Condition{
+  enum LogicalOperator{
+    AND = 0;
+    OR = 1;
+  }
+  enum QueryOperator{
+    EQUAL = 0;
+    NOT_EQUAL = 1;
+    GREATER = 2;
+    GREATER_EQUAL = 3;
+    LESS = 4;
+    LESS_EQUAL = 5;
+    LIKE = 6;
+    IN = 7;
+    NOT_IN = 8;
+    BETWEEN = 9;
+    IS_NULL = 10;
+    IS_NOT_NULL = 11;
+  }
+  LogicalOperator logical_operator = 1;
+  string field = 2;
+  google.protobuf.Value value = 3;
+  QueryOperator query_operator = 4;
+  repeated Condition conditions = 5;
 }
