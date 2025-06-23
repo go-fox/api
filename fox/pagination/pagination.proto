@@ -21,7 +21,7 @@ message PagingParams{
   optional Condition query = 3; // 查询条件
   repeated string order_by=4; // 排序字段
   optional bool no_paging = 5; // 是否不分页，如果为true则page和size无效
-  optional string fields = 6; // 要查询的字段，如果为空则查询全部字段
+  repeated string fields = 6; // 要查询的字段，如果为空则查询全部字段
 }
 
 message Condition{
