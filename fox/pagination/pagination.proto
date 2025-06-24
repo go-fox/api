@@ -44,8 +44,8 @@ message Condition{
     IS_NOT_NULL = 11;
   }
   LogicalOperator logical_operator = 1;
-  string field = 2;
-  google.protobuf.Value value = 3;
+  string query_field = 2;
+  google.protobuf.Value query_value = 3;
   QueryOperator query_operator = 4;
   repeated Condition conditions = 5;
 }
