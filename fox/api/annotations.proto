@@ -3,6 +3,18 @@ syntax = "proto3";
 package fox.api;
 import "google/protobuf/descriptor.proto";
 
+message MethodRule{
+  repeated string middleware = 1;
+}
+
 extend google.protobuf.MethodOptions{
-   repeated string middleware = 50000;
+  MethodRule method = 60000;
+}
+
+message ServerRule{
+  repeated string middleware = 1;
+}
+
+extend google.protobuf.ServiceOptions{
+  ServerRule server = 50000;
 }
